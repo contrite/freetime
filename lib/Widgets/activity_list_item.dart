@@ -13,7 +13,7 @@ class ActivityListItem extends StatelessWidget {
   // final String timeType;
   final Task task;
 
-  const ActivityListItem({required this.task});
+  const ActivityListItem({Key? key, required this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class ActivityListItem extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0.0, 14.0, 0.0, 0.0),
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width - 160,
                           child: Text(
                             task.title,

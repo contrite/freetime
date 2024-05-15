@@ -29,15 +29,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   String _title = '';
   String _notes = 'Notes...';
   DateTime _date = DateTime.now();
-  TextEditingController _dateController = TextEditingController();
-  TextEditingController _categoryController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _categoryController = TextEditingController();
   final DateFormat _dateFormat = DateFormat('MMM dd, yyyy');
   List<Category> categories = [];
   List<String> categoryTitles = [];
   int _time = 1;
-  double _selectedTime = 2;
+  final double _selectedTime = 2;
   String _imagePath = '';
-  Location _location = Location();
+  final Location _location = Location();
   LocationData? _currentPosition;
   List<int> timesList = [10, 30, 1, 2, 4, 6];
   File? imageFile;
@@ -70,7 +70,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
     _dateController.text = _dateFormat.format(_date);
     if (categories.isEmpty) {
-      categories.add(Category(title: 'No Category'));
+      categories.add(const Category(title: 'No Category'));
     }
   }
 
@@ -193,12 +193,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           },
           style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsets>(
-                  EdgeInsets.fromLTRB(0.0, 8.0, 8.0, 12.0))),
+                  const EdgeInsets.fromLTRB(0.0, 8.0, 8.0, 12.0))),
           //padding: const EdgeInsets.fromLTRB(0.0, 8.0, 8.0, 12.0),
           child: Container(
             decoration: BoxDecoration(
               color: darkColor,
-              borderRadius: new BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(5.0),
               boxShadow: const <BoxShadow>[
                 BoxShadow(
                   color: Color(0x40000000),
@@ -207,12 +207,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 6.0),
+            child: const Padding(
+              padding: EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 6.0),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
+                children: <Widget>[
                   Icon(
                     Icons.add_circle,
                     size: 12,
@@ -251,7 +251,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               controller: _categoryController,
             ),
             actions: <Widget>[
-              FlatButton(
+              ElevatedButton(
                 onPressed: () {
                   Navigator.of(context)
                       .pop(_categoryController.text.toString());
@@ -359,7 +359,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_back_ios,
                         color: darkColor,
                         size: 30,
@@ -398,7 +398,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     child: Column(
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                           child: TextFormField(
                             textCapitalization: TextCapitalization.words,
                             style: GoogleFonts.lato(
@@ -407,7 +407,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                                     fontSize: 36,
                                     fontWeight: FontWeight.w500)),
                             autofocus: widget.task == null ? true : false,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               //labelText: 'Title',
                               labelStyle: TextStyle(fontSize: 20),
                               border: InputBorder.none,
@@ -465,7 +465,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         ),
 
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
+                          padding: const EdgeInsets.symmetric(vertical: 10),
                           child: TextFormField(
                             textCapitalization: TextCapitalization.sentences,
                             maxLines: 3,
@@ -474,7 +474,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                                     color: Colors.grey[800],
                                     fontSize: 18,
                                     fontWeight: FontWeight.w300)),
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               // labelText: 'Notes...',
                               // labelStyle: TextStyle(fontSize: 15),
                               border: InputBorder.none,
@@ -513,7 +513,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                                         borderRadius: BorderRadius.circular(8)),
                                     width: MediaQuery.of(context).size.width,
                                     height: 200,
-                                    margin: EdgeInsets.symmetric(vertical: 20),
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 20),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8),
                                       child: Image.file(
@@ -528,13 +529,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                                         borderRadius: BorderRadius.circular(8)),
                                     width: MediaQuery.of(context).size.width,
                                     height: 200,
-                                    margin: EdgeInsets.symmetric(vertical: 20),
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 20),
                                     // color: Colors.black12,
                                     child: TextButton(
                                       onPressed: () {
                                         _takePic(ImageSource.gallery);
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         '＋ Add Image',
                                         style: TextStyle(
                                             color: Colors.black87,
@@ -548,7 +550,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                               borderRadius: BorderRadius.circular(8)),
                           width: MediaQuery.of(context).size.width,
                           height: 200,
-                          margin: EdgeInsets.fromLTRB(0, 20, 0, 80),
+                          margin: const EdgeInsets.fromLTRB(0, 20, 0, 80),
                           // color: Colors.black12,
                           child: TextButton(
                             onPressed: () {
@@ -556,7 +558,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                             },
                             child: Text(
                               _locationText,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black87, fontSize: 20),
                             ),
                           ),
@@ -619,38 +621,38 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 offset: Offset(0, 0))
           ],
         ),
-        padding: EdgeInsets.only(left: 25, right: 25, bottom: 20),
+        padding: const EdgeInsets.only(left: 25, right: 25, bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             widget.task != null
                 ? Container(
-                    margin: EdgeInsets.symmetric(vertical: 20.0),
+                    margin: const EdgeInsets.symmetric(vertical: 20.0),
                     height: 60,
                     width: 60,
                     decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
-                      child: Icon(
+                      child: const Icon(
                         Icons.delete,
                         color: Colors.white,
                       ),
                       onPressed: _delete,
                     ),
                   )
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
+              margin: const EdgeInsets.symmetric(vertical: 20.0),
               height: 60,
               width: 200,
               decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(30)),
-              child: FlatButton(
+              child: TextButton(
                 child: Text(
                   widget.task == null ? 'Add' : 'Update',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: const TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 onPressed: _submit,
               ),
@@ -664,7 +666,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   List<Category> getCategories() {
     List<Category> cats = [];
     for (var c in widget.task!.categories) {
-      if (c != null && c != '') {
+      if (c != '') {
         cats.add(Category(title: c));
       }
     }

@@ -31,7 +31,7 @@ class Task {
       this.imagePath});
 
   Map<String, dynamic> toMap() {
-    final map = Map<String, dynamic>();
+    final map = <String, dynamic>{};
     if (id != null) {
       map['id'] = id;
     }

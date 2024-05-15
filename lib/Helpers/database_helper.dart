@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:async';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:freetime/Models/task_model.dart';
@@ -45,6 +45,18 @@ class DatabaseHelper {
     return result;
   }
 
+  Future<List<Task>> getFilterTaskList(String phrase) async {
+    final List<Map<String, dynamic>> taskMapList = await getTaskMapList();
+    final List<Task> taskList = [];
+    for (var taskMap in taskMapList) {
+      taskList.add(Task.fromMap(taskMap));
+    }
+    final List<Task> _newdata =
+        taskList.where((x) => x.title.toLowerCase().contains(phrase)).toList();
+
+    return _newdata;
+  }
+
   Future<List<Task>> getTimeTaskList(String time) async {
     final List<Map<String, dynamic>> taskMapList = await getTaskMapList();
     final List<Task> taskList = [];
@@ -55,6 +67,17 @@ class DatabaseHelper {
         taskList.where((a) => a.time.toString() == time).toList();
     return _newdata;
   }
+
+//NEEDS HELP!!
+  // Future<List<Task>> filterTaskList(String text) async {
+  //   final List<Map<String, dynamic>> result = await _db
+  //       .rawQuery('SELECT * FROM task_table WHERE title LIKE', [text]);
+  //   final List<Task> taskList = [];
+  //   for (var taskMap in result) {
+  //     taskList.add(Task.fromMap(taskMap));
+  //   }
+  //   return taskList;
+  // }
 
   Future<List<Task>> getTaskList() async {
     final List<Map<String, dynamic>> taskMapList = await getTaskMapList();

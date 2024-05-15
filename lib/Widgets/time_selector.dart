@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freetime/Helpers/constants.dart';
 import 'package:freetime/Helpers/time_converter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -33,10 +32,6 @@ class _TimeSelectorState extends State<TimeSelector>
     super.initState();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   void setState(fn) {
@@ -47,7 +42,7 @@ class _TimeSelectorState extends State<TimeSelector>
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
 
-    return Container(
+    return SizedBox(
       //color: Colors.pink,
       width: _width,
       height: 60,
@@ -87,7 +82,7 @@ class _TimeSelectorState extends State<TimeSelector>
 class TimeDot extends StatefulWidget {
   final TimeDotModel _timeDotModel;
 
-  TimeDot(this._timeDotModel);
+  const TimeDot(this._timeDotModel, {Key? key}) : super(key: key);
 
   @override
   _TimeDotState createState() => _TimeDotState();

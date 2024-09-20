@@ -43,6 +43,9 @@ dependencies:
   location: ^4.2.0
   
 
+  camera_web: any
+  image_picker_for_web: any
+  location_web: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

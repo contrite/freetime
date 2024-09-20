@@ -192,7 +192,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             });
           },
           style: ButtonStyle(
-              padding: MaterialStateProperty.all<EdgeInsets>(
+              padding: WidgetStateProperty.all<EdgeInsets>(
                   const EdgeInsets.fromLTRB(0.0, 8.0, 8.0, 12.0))),
           //padding: const EdgeInsets.fromLTRB(0.0, 8.0, 8.0, 12.0),
           child: Container(
